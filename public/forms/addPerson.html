@@ -1,0 +1,52 @@
+<!--
+     HTML Form example with CSS
+     This is based on https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/My_first_HTML_form
+
+     author: kvlinden
+     version: summer2016
+   -->
+<html>
+    <head>
+        <title>Homework2</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="script-javascript.js"></script>
+        <script src="script-jquery.js"></script>
+        <script src="//code.jquery.com/jquery-latest.min.js"></script>
+        <script>
+        $( 'form' ).submit(function( event ) {
+          event.preventDefault();
+
+          var form = $( this );
+
+          $.ajax({
+            type: 'POST',
+            url: 'server.js',
+            data: form.serialize(),
+            dataType: 'json',
+            success: function( resp ) {
+              console.log( resp );
+            }
+          });
+        });
+        </script>
+    </head>
+    <body>
+        <form action="/forms" method="post">
+            <div>
+                <label for="id">ID:</label>
+                <input type="text" id="message" name="user_message" />
+            </div>
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="message" name="user_message" />
+            </div>
+            <div>
+                <label for="date">Start Date:</label>
+                <input type="text" id="message" name="user_message" />
+            </div>
+            <div class="button">
+                <button type="submit">Send your message</button>
+            </div>
+        </form>
+    </body>
+</html>
